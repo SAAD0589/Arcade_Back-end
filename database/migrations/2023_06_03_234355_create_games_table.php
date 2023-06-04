@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_game');
             $table->string('name_game');
             $table->string('link_game');
-            $table->date('dateS_game');
+            $table->string('dateS_game');
             $table->string('description_game');
             $table->string('image_game');
             $table->unsignedBigInteger('id_requirement');

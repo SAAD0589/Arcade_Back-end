@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_game');
             $table->timestamps();
-        
+            $table->primary(['id_user', 'id_game']);
             $table->foreign('id_user')->references('id_user')->on('users');
             $table->foreign('id_game')->references('id_game')->on('games');
         });
