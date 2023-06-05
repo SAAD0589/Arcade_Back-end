@@ -3,6 +3,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\gamesController;
+use App\Models\Game;
+use App\Http\Controllers\AdminAuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,3 +27,13 @@ Route::group([
 });
 Route::get('/games',[gamesController::class,'index']); 
 
+
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::post('/loginAdmine', [AdminAuthController::class, 'login']);
+    Route::post('/registerAdmine', [AdminAuthController::class, 'register']);
+    Route::post('/logoutAdmine', [AdminAuthController::class, 'logout']);
+    Route::post('/refreshAdmine', [AdminAuthController::class, 'refresh']);
+});
