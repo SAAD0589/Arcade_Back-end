@@ -8,7 +8,6 @@ class gamesController extends Controller
 {
     function index(){
         $data=Game::all();
-        echo json_encode($data);
         return response()->json($data);
     }
 }
