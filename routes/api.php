@@ -3,8 +3,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\gamesController;
-use App\Models\Game;
-use App\Http\Controllers\AdminAuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,7 +24,6 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);  
 });
 Route::get('/games',[gamesController::class,'index']); 
-
 
 
 Route::group([
