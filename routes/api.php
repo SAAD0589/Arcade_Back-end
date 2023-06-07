@@ -2,6 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\gamesController;
 use App\Http\Controllers\AdminAuthController;
 /*
@@ -25,7 +26,7 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);  
 });
 Route::get('/games',[gamesController::class,'index']); 
-
+Route::get('/users',[UserController::class,'index']); 
 
 Route::group([
     'middleware' => 'api',
