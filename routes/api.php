@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\gamesController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\DowController;
 use App\Http\Controllers\RequirementController;
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ Route::get('/Requirement',[RequirementController::class,'index']);
 Route::get('/Categorie',[CategorieController::class,'index']); 
 
 Route::get('/users',[UserController::class,'index']); 
-
+Route::post('/download',[DowController::class,'create']);
 Route::group([
     'middleware' => 'api',
 ], function ($router) {
