@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\gamesController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\RequirementController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +28,9 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);  
 });
 Route::get('/games',[gamesController::class,'index']); 
+Route::get('/Requirement',[RequirementController::class,'index']); 
+Route::get('/Categorie',[CategorieController::class,'index']); 
+
 Route::get('/users',[UserController::class,'index']); 
 
 Route::group([
