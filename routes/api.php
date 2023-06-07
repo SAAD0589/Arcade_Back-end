@@ -2,6 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\gamesController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\CategorieController;
@@ -30,6 +31,7 @@ Route::get('/games',[gamesController::class,'index']);
 Route::get('/Requirement',[RequirementController::class,'index']); 
 Route::get('/Categorie',[CategorieController::class,'index']); 
 
+Route::get('/users',[UserController::class,'index']); 
 
 Route::group([
     'middleware' => 'api',
