@@ -53,7 +53,7 @@ Route::group([
 });
 //------------------------------crud Routes-------------------------------------------------------
 //Games : 
-Route::get('/games',[gamesController::class,'index']); 
+Route::get('/Games',[gamesController::class,'allgames']); 
 Route::post('/Game/save',[gamesController::class, 'store']);
     
 Route::put('/Game/update/{id_game}',[gamesController::class, 'update']);
