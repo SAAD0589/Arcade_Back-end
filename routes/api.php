@@ -28,7 +28,9 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);  
+    Route::post('/repport',[gamesController::class, 'repport']);
 });
+
 
 Route::get('/games',[gamesController::class,'index']); 
 Route::get('/allGames',[gamesController::class,'allgames']); 
@@ -60,6 +62,7 @@ Route::put('/Game/update/{id_game}',[gamesController::class, 'update']);
  
 Route::delete('/Game/delete/{id_game}',[gamesController::class, 'destroy']);
  
+
  
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

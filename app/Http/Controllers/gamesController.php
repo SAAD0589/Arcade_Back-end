@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -53,9 +54,19 @@ class gamesController extends Controller
         $game->delete();
         return response()->json(' deleted!');
     }
+
+    public function repport(Request $request)
+    {
+
+        DB::table('reports')->insert([
+            'description_comment' => $request->description_comment,
+            'id_user' => $request->id_user,
+            'id_game' => $request->id_game ,
+        ]);
+        return response()->json(['message' => 'repport added successfully'], 201);
+    }
+
+
 }
-
-
-    
     
 
