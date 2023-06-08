@@ -56,7 +56,7 @@ Route::group([
 //Games : 
 Route::get('/Games',[gamesController::class,'allgames']); 
 Route::post('/Game/save',[gamesController::class, 'store']);  
-Route::put('/Game/update/{id_game}',[gamesController::class, 'update']);
+Route::post('/Game/update/{id_game}',[gamesController::class, 'update']);
 Route::delete('/Game/delete/{id_game}',[gamesController::class, 'destroy']);
 Route::post('/update',[updateController::class,'update']); 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -26,7 +26,7 @@ class gamesController extends Controller
             ->where('genre_category', $request->genre_category)
             ->first();
 
-        if (!$category) {
+        if (!isset($category)) {
             $id_cat = DB::table('categories')->insertGetId([
                 'genre_category' => $request->genre_category
             ]);
@@ -34,22 +34,41 @@ class gamesController extends Controller
             $id_cat = $category->id_category;
         }
 
-        $id_req = DB::table('requirements')->insertGetId([
-            'CPU' => $request->CPU,
-            'GPU' => $request->GPU,
-            'Memory' => $request->Memory,
-            'VRAM' => $request->VRAM,
-            'Storage' => $request->Storage,
-        ]);
-        DB::table('games')->insert([
-            'name_game' => $request->name_game,                              
-            'link_game' => $request->link_game,
-            'dateS_game' => $request->dateS_game,
-            'description_game' => $request->description_game,
-            'image_game' => $request->image_game,
-            'id_requirement' => $id_req,
-            'id_category' => $id_cat
-        ]);
+        // $id_req = DB::table('requirements')->insertGetId([
+        //     'CPU' => $request->CPU,
+        //     'GPU' => $request->GPU,
+        //     'Memory' => $request->Memory,
+        //     'VRAM' => $request->VRAM,
+        //     'Storage' => $request->Storage,
+        // ]);
+
+        $requirement = DB::table('requirements')
+        ->where('CPU', $request->CPU)
+        ->where('GPU', $request->GPU)
+        ->where('Memory', $request->Memory)
+        ->where('VRAM', $request->VRAM)
+        ->where('Storage', $request->Storage)
+        ->first();
+        if (isset($requirement)) {
+            $id_req = $requirement->id_requirement;
+        } else {
+            $id_req = DB::table('requirements')->insertGetId([
+                'CPU' => $request->CPU,
+                'GPU' => $request->GPU,
+                'Memory' => (int) $request->Memory,
+                'VRAM' => (int) $request->VRAM,
+                'Storage' =>(int)  $request->Storage,
+            ]);
+    }
+    DB::table('games')->insert([
+        'name_game' => $request->name_game,                              
+        'link_game' => $request->link_game,
+        'dateS_game' => $request->dateS_game,
+        'description_game' => $request->description_game,
+        'image_game' => $request->image_game,
+        'id_requirement' => isset($requirement) ? $requirement->id_requirement : $id_req,
+        'id_category' => $id_cat
+    ]);
         return response()->json(['message' => 'Game added successfully'], 201);
     }
         
@@ -59,7 +78,7 @@ class gamesController extends Controller
         ->where('genre_category', $request->genre_category)
         ->first();
 
-        if (!$category) {
+        if (!isset($category)) {
             $id_cat = DB::table('categories')->insertGetId([
                 'genre_category' => $request->genre_category
             ]);
@@ -68,23 +87,16 @@ class gamesController extends Controller
         }
 
         $requirement = DB::table('requirements')
-        ->where('id_requirement', $request->id_requirement)
+        ->where('CPU', strval($request->CPU))
+        ->where('GPU', strval($request->GPU))
         ->first();
 
-        if ($requirement) {
-            DB::table('requirements')
-                ->where('id_requirement', $request->id_requirement)
-                ->update([
-                    'CPU' => $request->CPU,
-                    'GPU' => $request->GPU,
-                    'Memory' => $request->Memory,
-                    'VRAM' => $request->VRAM,
-                    'Storage' => $request->Storage,
-                ]);
+        if (isset($requirement)) {
+            $id_req = $requirement->id_requirement;
         } else {
             $id_req = DB::table('requirements')->insertGetId([
-                'CPU' => $request->CPU,
-                'GPU' => $request->GPU,
+                'CPU' => strval($request->CPU),
+                'GPU' => strval($request->GPU),
                 'Memory' => (int) $request->Memory,
                 'VRAM' => (int) $request->VRAM,
                 'Storage' =>(int)  $request->Storage,
