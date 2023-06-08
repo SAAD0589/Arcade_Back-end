@@ -30,6 +30,8 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);  
 });
 
+Route::get('/games',[gamesController::class,'index']); 
+Route::get('/allGames',[gamesController::class,'allgames']); 
 Route::get('/Requirement',[RequirementController::class,'index']); 
 Route::post('/Requirement/save',[RequirementController::class,'store']); 
 Route::get('/Categorie',[CategorieController::class,'index']); 
