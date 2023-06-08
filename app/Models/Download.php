@@ -12,7 +12,7 @@ class Download extends Model
     protected $fillable = [
         'id_user',
         'id_game',
-        'dateD_download',
+        'date_download',
     ];
 
     public function user()

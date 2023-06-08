@@ -10,4 +10,10 @@ class UserController extends Controller
         $data=User::all();
         return response()->json($data);
     }
+    public function destroy($id_user )
+    {
+        $user = User::find($id_user );
+        $user->delete();
+        return response()->json(' deleted!');
+    }
 }
