@@ -7,6 +7,7 @@ use App\Http\Controllers\gamesController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\DowController;
+use App\Http\Controllers\favController;
 use App\Http\Controllers\RequirementController;
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ Route::get('/Categorie',[CategorieController::class,'index']);
 
 Route::get('/users',[UserController::class,'index']); 
 Route::post('/download',[DowController::class,'create']);
+Route::post('/fav',[favController::class,'create']);
+Route::get('/fav',[favController::class,'index']);
+Route::post('/favg',[favController::class,'show']);
+Route::post('/favd',[favController::class,'delete']);
 Route::group([
     'middleware' => 'api',
 ], function ($router) {
