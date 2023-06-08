@@ -12,11 +12,11 @@ class Requirement extends Model
     protected $primaryKey = 'id_requirement';
 
     protected $fillable = [
-        'CPU_requirement',
-        'GPU_requirement',
-        'Memory_requirement',
-        'VRAM_requirement',
-        'Storage_requirement',
+        'CPU',
+        'GPU',
+        'Memory',
+        'VRAM',
+        'Storage',
     ];
 
     public function games()
