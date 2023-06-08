@@ -13,6 +13,7 @@ class Game extends Model
 
     protected $fillable = [
         'name_game',
+        'link_game',
         'dateS_game',
         'description_game',
         'image_game',
